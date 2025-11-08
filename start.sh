@@ -1,2 +1,2 @@
 #!/bin/bash
-python mama_bot.py
+python main.py
