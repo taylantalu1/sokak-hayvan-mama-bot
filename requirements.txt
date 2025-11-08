@@ -1,3 +1,4 @@
+aiogram==3.1.0
 flask
 requests
 aiohttp==3.9.3
