@@ -6,8 +6,8 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 @dp.message()
-async def echo(message: types.Message):
-    await message.answer(f"Merhaba {message.from_user.first_name}, bot çalışıyor ✅")
+async def start(message: types.Message):
+    await message.answer("🐾 Merhaba! Mama konum botu aktif ✅")
 
 async def main():
     print("Bot başlatılıyor...")
