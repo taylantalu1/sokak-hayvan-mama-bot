@@ -297,7 +297,18 @@ async def main():
     app.add_handler(conv_handler)
     app.add_handler(MessageHandler(filters.LOCATION, handle_location))
     
-    await app.run_polling()
+    # Webhook Modu (Render için)
+    port = int(os.getenv("PORT", 8080))
+    await app.bot.set_webhook(url=f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook", drop_pending_updates=True)
+    
+    async with app:
+        await app.start()
+        await app.updater.start_webhook(
+            listen="0.0.0.0",
+            port=port,
+            webhook_url=f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook"
+        )
+        await asyncio.Event().wait()
 
 if __name__ == "__main__":
     import asyncio
